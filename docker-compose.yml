@@ -1,0 +1,61 @@
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${LOCAL_UID:-1000}
+        GID: ${LOCAL_GID:-1000}
+    container_name: entry_test_app
+    working_dir: /var/www
+    volumes:
+      - ./app:/var/www
+    networks:
+      - entry_test_network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: entry_test_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./app:/var/www:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - entry_test_network
+    depends_on:
+      - app
+
+  db:
+    image: mysql:8.0
+    container_name: entry_test_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: entry_test_db
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: entry_test_user
+      MYSQL_PASSWORD: entry_test_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - entry_test_network
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - mysqladmin ping -h 127.0.0.1 -uroot -p$${MYSQL_ROOT_PASSWORD}
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+networks:
+  entry_test_network:
+    driver: bridge
+
+volumes:
+  mysql_data:

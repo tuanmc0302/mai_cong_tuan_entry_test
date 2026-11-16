@@ -1,0 +1,6 @@
+.env
+.idea/
+.vscode/
+*.log
+app/public/assets/demo/maps/
+app/public/assets/demo/maps/
