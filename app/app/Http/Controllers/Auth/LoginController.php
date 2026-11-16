@@ -26,7 +26,7 @@ class LoginController extends Controller
         }
 
         return back()
-            ->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])
+            ->withErrors(['email' => 'Incorrect email or password.'])
             ->onlyInput('email');
     }
 

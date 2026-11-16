@@ -1,5 +1,15 @@
 @extends('layouts.app')
 
+@section('title', 'Add locations')
+
+@section('breadcrumb')
+
+    <span class="breadcrumb-item active">
+        Locations/ Add locations
+    </span>
+
+@endsection
+
 @section('content')
 <div class="card">
     <div class="card-header"><h5 class="mb-0">Create Location</h5></div>

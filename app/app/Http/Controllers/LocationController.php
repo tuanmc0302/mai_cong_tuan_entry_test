@@ -61,7 +61,7 @@ class LocationController extends Controller
         $this->locationRepository->create($request->validated());
 
         return redirect()->route('locations.index')
-            ->with('status', 'Tạo location thành công.');
+            ->with('status', 'Location created successfully.');
     }
 
     public function edit(Location $location)
@@ -74,7 +74,7 @@ class LocationController extends Controller
         $this->locationRepository->update($location->id, $request->validated());
 
         return redirect()->route('locations.index')
-            ->with('status', 'Cập nhật location thành công.');
+            ->with('status', 'Location updated successfully.');
     }
 
     public function destroy(Location $location)
@@ -82,6 +82,6 @@ class LocationController extends Controller
         $this->locationRepository->delete($location->id);
 
         return redirect()->route('locations.index')
-            ->with('status', 'Đã xoá location.');
+            ->with('status', 'Location deleted.');
     }
 }

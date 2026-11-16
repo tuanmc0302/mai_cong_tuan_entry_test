@@ -43,6 +43,6 @@ class ProfileController extends Controller
 
         return redirect()
             ->route('profile.edit')
-            ->with('status', 'Cập nhật thông tin thành công.');
+            ->with('status', 'Information updated successfully.');
     }
 }

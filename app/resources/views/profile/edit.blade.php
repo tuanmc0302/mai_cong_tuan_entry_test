@@ -3,6 +3,14 @@
 
 @section('title', 'Edit Profile')
 
+@section('breadcrumb')
+
+    <span class="breadcrumb-item active">
+        Edit Profile
+    </span>
+
+@endsection
+
 @section('content')
 
 <div class="card">

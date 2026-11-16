@@ -50,6 +50,6 @@ class LocationSeeder extends Seeder
             Location::insert($chunk);
         }
 
-        $this->command?->info(count($rows) . ' locations đã được nạp.');
+        $this->command?->info(count($rows) . ' locations have been loaded');
     }
 }

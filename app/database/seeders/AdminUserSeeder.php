@@ -31,5 +31,7 @@ class AdminUserSeeder extends Seeder
                 'gender' => 'other',
             ]
         );
+
+        $this->command?->info( 'create account admin user successfully');
     }
 }

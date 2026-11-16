@@ -47,6 +47,10 @@
                         @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+
+                        @if (session('status'))
+                            <div class="alert alert-success my-3">{{ session('status') }}</div>
+                        @endif
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100">
